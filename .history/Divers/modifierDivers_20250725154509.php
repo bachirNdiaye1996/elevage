@@ -40,7 +40,7 @@ include "../connexion/conexiondb.php";
             $sth = $db->prepare($sql);    
             $sth->execute(array($id));
 
-            header("location: divers.php?idreceptionpoussin=$idreceptionpoussin");
+            header("location: divers.php?idreceptionpoussin=$_GET['iddivers']");
             exit;
         } 
     }

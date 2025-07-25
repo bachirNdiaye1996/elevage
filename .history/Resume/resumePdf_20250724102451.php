@@ -273,7 +273,7 @@
     $pdf->Cell(40,5,utf8_decode($PrixDette),1,0,'C');
     $pdf->Cell(80,5,utf8_decode($PrixVente),1,1,'C');
     // Pour Voir le total
-    $pdf->Cell(40,5,utf8_decode("Total (achat + frais)"),1,0,'C');
+    $pdf->Cell(30,5,utf8_decode("Total achat + frais"),1,0,'C');
     $pdf->Cell(30,5,utf8_decode($PrixReceptionPoussinTotal + $PrixAlimentTotal + $PrixDivers + $PrixVaccination),1,1,'C');
 
 
