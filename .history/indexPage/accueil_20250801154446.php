@@ -44,7 +44,7 @@
         $PoussinsRecu = $query->fetchAll();
     //** Fin select des receptions
 
-    //print_r($PoussinsRecu );
+    print_r($PoussinsRecu );
 
 
     

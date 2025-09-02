@@ -44,7 +44,7 @@
         $PoussinsRecu = $query->fetchAll();
     //** Fin select des receptions
 
-    //print_r($PoussinsRecu );
+    print_r($PoussinsRecu );
 
 
     
@@ -523,13 +523,6 @@
                             }else{
                                 var m = poussinRecu[i]['mois'];
                                 PoussinRecu[m] = poussinRecu[i]['nombrepoussin'];
-                            }
-
-                            if(mortalite[i] === undefined){
-                                //Poids.push(0);
-                            }else{
-                                var m = mortalite[i]['mois'];
-                                Mortalite[m] = mortalite[i]['nombrepoussin'];
                             }
                         }
 

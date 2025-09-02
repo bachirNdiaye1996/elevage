@@ -160,16 +160,16 @@
 
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',8);
-        $pdf->Cell(70,5,utf8_decode('Nom'),1,0,'C');  
+        $pdf->Cell(30,5,utf8_decode('Nom'),1,0,'C');  
         $pdf->Cell(30,5,utf8_decode('Prix'),1,0,'C');
         $pdf->Cell(30,5,utf8_decode('Quantités'),1,0,'C');
-        $pdf->Cell(50,5,utf8_decode('Date divers'),1,1,'C');
+        $pdf->Cell(90,5,utf8_decode('Date divers'),1,1,'C');
         
         foreach($Divers as $divers){ 
-            $pdf->Cell(70,5,utf8_decode($divers['nom']),1,0,'C');
+            $pdf->Cell(30,5,utf8_decode($divers['nom']),1,0,'C');
             $pdf->Cell(30,5,utf8_decode($divers['prix']),1,0,'C');
             $pdf->Cell(30,5,utf8_decode($divers['quantite']),1,0,'C');
-            $pdf->Cell(50,5,utf8_decode($divers['datedivers']),1,1,'C');
+            $pdf->Cell(90,5,utf8_decode($divers['datedivers']),1,1,'C');
 
             $PrixDivers +=  $divers['prix'];
         }
@@ -268,7 +268,7 @@
     $pdf->SetFont('Arial','B',9);
     $pdf->Cell(194,10,'',0,1);
     $pdf->SetTextColor(50,60,100);
-    $pdf->Cell(190,8,utf8_decode("Le bilan total de la bande :"),0,1,'C');
+    $pdf->Cell(190,8,utf8_decode("Le bilan tatal de la bande :"),0,1,'C');
     $pdf->SetFont('Arial','B',7);
 
     $pdf->SetTextColor(0,0,0);

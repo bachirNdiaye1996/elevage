@@ -268,7 +268,7 @@
     $pdf->SetFont('Arial','B',9);
     $pdf->Cell(194,10,'',0,1);
     $pdf->SetTextColor(50,60,100);
-    $pdf->Cell(190,8,utf8_decode("Le bilan total de la bande :"),0,1,'C');
+    $pdf->Cell(190,8,utf8_decode("Le bilan tatal de la bande :"),0,1,'C');
     $pdf->SetFont('Arial','B',7);
 
     $pdf->SetTextColor(0,0,0);

@@ -29,10 +29,10 @@
     $dt = time();
     $dty = date( "Y", $dt );  // On extrait le mois courant.
     printf($dty);
-
+/*
     //** Debut select des receptions
-        $sql = "SELECT SUM(`nombrepoussin`) as nombrepoussin, MONTH(`datecreation`) as mois FROM `receptionpoussin` WHERE `actif`=1 AND YEAR(`datecreation`)=$dty 
-        GROUP BY MONTH(`datecreation`);";          // On tire les fiches du mois courant
+        $sql = "SELECT SUM(`prodpoids`) as prodpoids, DAY(`dateCreation`) as jour FROM `cranteuseq1production` WHERE `actif`=1 AND MONTH(`dateCreation`)=$dtm 
+        GROUP BY DAY(`dateCreation`);";          // On tire les fiches du mois courant
     
         // On prépare la requête
         $query = $db->prepare($sql);
@@ -41,13 +41,11 @@
         $query->execute();
     
         // On récupère les valeurs dans un tableau associatif
-        $PoussinsRecu = $query->fetchAll();
+        $FichesCranteuse = $query->fetchAll();
     //** Fin select des receptions
 
-    //print_r($PoussinsRecu );
 
-
-    
+    */
 ?>
 
 
@@ -497,7 +495,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div>
-                                        <canvas id="PoussinRecu"></canvas>
+                                        <canvas id="myChart"></canvas>
                                     </div>
                                     <hr>
                                     Production
@@ -507,44 +505,69 @@
                         </div>
                     </div>
 
+                    
+
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <script>
+                        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                        var yValues = [55, 49, 44, 24, 15];
+                        var barColors = [
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145"
+                        ];
+
+                        new Chart("myChartCirculaire", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                            }]
+                        },
+                        options: {
+                            title: {
+                            display: true,
+                            text: "World Wide Wine Production 2018"
+                            }
+                        }
+                        });
+                    </script>
+
                     <script type="text/javascript">
-                        var poussinRecu = <?php echo json_encode($PoussinsRecu); ?>;
-                        var mortalite = <?php echo json_encode($Mortalite); ?>;
+                        var test = <?php echo json_encode($FichesCranteuse); ?>;
                         //console.log(test);
 
-                        var Mois = [];
-                        var PoussinRecu = [];
-                        var Mortalite = [];
-                        Mois = ["","Janv","FEV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL","AOUT", "SEMPT", "OCT", "NOV", "DEC"];
-                        for (let i = 0; i < 13; i++) {
-                            if(poussinRecu[i] === undefined){
+                        var Jours = [];
+                        var Poids = [];
+                        Jours = ["0","1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18","19", "20", "21", "22", "23", "24","25", "26", "27", "28", "29", "30","31"];
+                        for (let i = 0; i < 30; i++) {
+                            if(test[i] === undefined){
                                 //Poids.push(0);
                             }else{
-                                var m = poussinRecu[i]['mois'];
-                                PoussinRecu[m] = poussinRecu[i]['nombrepoussin'];
-                            }
-
-                            if(mortalite[i] === undefined){
-                                //Poids.push(0);
-                            }else{
-                                var m = mortalite[i]['mois'];
-                                Mortalite[m] = mortalite[i]['nombrepoussin'];
+                                var j = test[i]['jour'];
+                                Poids[j] = test[i]['prodpoids'];
                             }
                         }
 
-                        const ctx = document.getElementById('PoussinRecu');
+                        console.log(Poids);
+
+                        const ctx = document.getElementById('myChart');
 
                         new Chart(ctx, {
                             type: 'bar',
                             data: {
-                                labels: Mois,
+                                labels: Jours,
                                 datasets: [{
-                                    label: "Poussins",
+                                    label: "Consommation",
                                     backgroundColor: "#4e73df",
                                     hoverBackgroundColor: "#2e59d9",
                                     borderColor: "#4e73df",
-                                    data: PoussinRecu,
+                                    data: Poids,
                                     borderWidth: 1
                                 }]
                             },

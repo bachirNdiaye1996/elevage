@@ -44,7 +44,7 @@
         $PoussinsRecu = $query->fetchAll();
     //** Fin select des receptions
 
-    //print_r($PoussinsRecu );
+    print_r($PoussinsRecu );
 
 
     
@@ -497,7 +497,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div>
-                                        <canvas id="PoussinRecu"></canvas>
+                                        <canvas id="myChart"></canvas>
                                     </div>
                                     <hr>
                                     Production
@@ -510,41 +510,32 @@
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script type="text/javascript">
                         var poussinRecu = <?php echo json_encode($PoussinsRecu); ?>;
-                        var mortalite = <?php echo json_encode($Mortalite); ?>;
                         //console.log(test);
 
                         var Mois = [];
                         var PoussinRecu = [];
-                        var Mortalite = [];
-                        Mois = ["","Janv","FEV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL","AOUT", "SEMPT", "OCT", "NOV", "DEC"];
-                        for (let i = 0; i < 13; i++) {
+                        Mois = ["Janv","FEV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL","AOUT", "SEMPT", "OCT", "NOV", "DEC"];
+                        for (let i = 0; i < 30; i++) {
                             if(poussinRecu[i] === undefined){
                                 //Poids.push(0);
                             }else{
-                                var m = poussinRecu[i]['mois'];
-                                PoussinRecu[m] = poussinRecu[i]['nombrepoussin'];
-                            }
-
-                            if(mortalite[i] === undefined){
-                                //Poids.push(0);
-                            }else{
-                                var m = mortalite[i]['mois'];
-                                Mortalite[m] = mortalite[i]['nombrepoussin'];
+                                var j = poussinRecu[i]['mois'];
+                                PoussinRecu[j] = poussinRecu[i]['nombrepoussin'];
                             }
                         }
 
-                        const ctx = document.getElementById('PoussinRecu');
+                        const ctx = document.getElementById('myChart');
 
                         new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: Mois,
                                 datasets: [{
-                                    label: "Poussins",
+                                    label: "Consommation",
                                     backgroundColor: "#4e73df",
                                     hoverBackgroundColor: "#2e59d9",
                                     borderColor: "#4e73df",
-                                    data: PoussinRecu,
+                                    data: Poids,
                                     borderWidth: 1
                                 }]
                             },

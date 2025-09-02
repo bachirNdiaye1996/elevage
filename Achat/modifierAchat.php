@@ -41,7 +41,7 @@ include "../connexion/conexiondb.php";
             $sth = $db->prepare($sql);    
             $sth->execute(array($id));
 
-            header("location: achataliment.php");
+            header("location: achataliment.php?idreceptionpoussin=$idreceptionpoussin");
             exit;
         } 
     }
