@@ -6,13 +6,13 @@ include "../connexion/conexiondb.php";
 include "../variables.php";
 
 
-
 //Variables
+$idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la fiche log par get
 
 
 
 //** Debut select vaccination
-    $sql = "SELECT * FROM `vente` where `actif`=1 ORDER BY `idvente` DESC;";
+    $sql = "SELECT * FROM `vente` where `actif`=1 AND `idreceptionpoussin`=$idreceptionpoussin ORDER BY `idvente` DESC;";
 
     // On prépare la requête
     $query = $db->prepare($sql);

@@ -13,7 +13,7 @@ $idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la f
 
 
 //** Debut select vaccination
-    $sql = "SELECT * FROM `dette` where `actif`=1 ORDER BY `iddette` DESC;";
+    $sql = "SELECT * FROM `dette` where `actif`=1 AND `idreceptionpoussin`=$idreceptionpoussin ORDER BY `iddette` DESC;";
 
     // On prépare la requête
     $query = $db->prepare($sql);

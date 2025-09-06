@@ -6,13 +6,13 @@ include "../connexion/conexiondb.php";
 include "../variables.php";
 
 
-
 //Variables
+$idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la fiche log par get
 
 
 
 //** Debut select vaccination
-    $sql = "SELECT * FROM `vente` where `actif`=1 ORDER BY `idvente` DESC;";
+    $sql = "SELECT * FROM `vente` where `actif`=1 AND `idreceptionpoussin`=$idreceptionpoussin ORDER BY `idvente` DESC;";
 
     // On prépare la requête
     $query = $db->prepare($sql);
@@ -87,7 +87,7 @@ include "../variables.php";
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="accueil.php">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../indexPage/accueil.php">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -99,7 +99,7 @@ include "../variables.php";
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="accueil.php">
+                    <a class="nav-link" href="../indexPage/accueil.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Accueil Dashboard</span></a>
                 </li>

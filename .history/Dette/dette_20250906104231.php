@@ -13,7 +13,7 @@ $idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la f
 
 
 //** Debut select vaccination
-    $sql = "SELECT * FROM `dette` where `actif`=1 ORDER BY `iddette` DESC;";
+    $sql = "SELECT * FROM `dette` where `actif`=1 AND `idreceptionpoussin`=$idreceptionpoussin ORDER BY `iddette` DESC;";
 
     // On prépare la requête
     $query = $db->prepare($sql);
@@ -88,7 +88,7 @@ $idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la f
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="accueil.php">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../indexPage/accueil.php">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -100,7 +100,7 @@ $idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la f
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="accueil.php">
+                    <a class="nav-link" href="../indexPage/accueil.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Accueil Dashboard</span></a>
                 </li>
@@ -504,8 +504,7 @@ $idreceptionpoussin = $_GET['idreceptionpoussin'];  // On recupére l'ID de la f
                                             </tbody>
                                         </table>
 
-                                        <a href="ajouterDetteFormulaire.php" class="btn btn-success w-lg bouton mt-5 mb-2 ml-5"><i class="fa fa-plus me-1"></i> Ajouter dette</a>
-
+                                        <a href="ajouterDetteFormulaire.php?idreceptionpoussin=<?= $_GET['idreceptionpoussin'] ?>" class="btn btn-success w-lg bouton mt-5 mb-2 ml-5"><i class="fa fa-plus me-1"></i>Ajouter dette</a>     
                                         <!-- Bouton et pagnination--> 
                                     </div>
                                 </div>
